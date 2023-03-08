@@ -1,7 +1,7 @@
 import sys
 import pandas
 import matplotlib.pyplot as plt
-from matplotlib.widgets import Slider, Button
+from matplotlib.widgets import Slider, Button, Dropdown
 from datetime import date
 
 print("test")
@@ -25,6 +25,9 @@ def showresults(fl):
             print(z[0])
             y.append(int(z[1]))
             c.append("green") if z[2]=="True" else c.append("red")
+        
+        plot_types = {"classic":"classic","deviation":"deviation"}
+        dropdown = Dropdown(ax=ax, labels=list(plot_types.keys()))
         plt.bar(x, y, color = c, label = "Freethrows")
         plt.ylim([20,70])
         plt.xlim(["2023-02-16",str(date.today())])
@@ -49,6 +52,7 @@ if command == "add":
 elif command == "show":
     with open("/home/schulzkilian/meinzeug/Code/python/basketball/basketball.txt","r") as fl:
         showresults(fl)
+
 
 
     
